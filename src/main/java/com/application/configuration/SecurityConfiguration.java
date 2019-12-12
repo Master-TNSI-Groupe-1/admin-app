@@ -24,10 +24,12 @@ public class SecurityConfiguration  extends WebSecurityConfigurerAdapter{
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		
+
 		http.httpBasic()
 		.and()
 			.authorizeRequests()
+				.antMatchers("/css/**").permitAll()
+				.antMatchers("/js/**").permitAll()
 				.antMatchers( "/" , "/test").permitAll()
 
 			.antMatchers("/authenticated")
@@ -37,9 +39,9 @@ public class SecurityConfiguration  extends WebSecurityConfigurerAdapter{
 				.logoutSuccessUrl("/").and()
 				.rememberMe();
 	}
-	
-	
-	 
+
+
+
 	@Bean
     public BCryptPasswordEncoder encoder() {
         return new BCryptPasswordEncoder();

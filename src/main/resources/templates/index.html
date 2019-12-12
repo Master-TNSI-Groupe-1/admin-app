@@ -1,11 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr-fr" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <link href="webjars/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" th:href="@{/css/index.css}"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
-	<h1> Bonne chances les gars ! </h1>
-	<p> Vous étes des champions </p>
+<!-- Side navigation -->
+
+<div th:include="navbar.html" id="navigation" class="sidenav"></div>
+
+<!-- Page content -->
+<div class="main">
+    <h3>Brand / Logo</h3>
+    <p>The .navbar-brand class is used to highlight the brand/logo/project name of your page.</p>
+</div>
+
+
+<script type="text/javascript" th:src="@{/js/includes.js}"></script>
+
 </body>
 </html>
