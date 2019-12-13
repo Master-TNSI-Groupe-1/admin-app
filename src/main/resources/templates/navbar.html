@@ -1,2 +1,18 @@
-<a href="/place/create">Création du lieu</a>
-<a href="/place/update">Modification du lieu</a>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<body>
+<header th:fragment="navbar">
+    <nav>
+        <a th:href="@{/home}">Home Page</a>
+        <a sec:authorize="!isAuthenticated()" th:href="@{/login}">Log In</a>
+        <a sec:authorize="isAuthenticated()" th:href="@{/places/create}">Create place</a>
+        <a sec:authorize="isAuthenticated()" th:href="@{/places/update}">Update place</a>
+        <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
+            <input type="submit" class="btn btn-danger" value="Logout" />
+        </form>
+    </nav>
+</header>
+</body>
+</html>

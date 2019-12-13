@@ -8,11 +8,10 @@
 		<version>2.2.1.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.myApp</groupId>
-	<artifactId>TNSI-Project</artifactId>
+	<groupId>com.application</groupId>
+	<artifactId>admin-app</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Simon-StarterProject</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Admin Project Pair a Pair</description>
 
 	<properties>
 		<java.version>11</java.version>
@@ -21,6 +20,7 @@
 		<jquery.version>3.4.1</jquery.version>
 		<bootstrap.version>4.4.1</bootstrap.version>
 		<popper.js.version>1.16.0</popper.js.version>
+		<font-awesome.version>5.11.2</font-awesome.version>
 	</properties>
 
 	<dependencies>
@@ -43,6 +43,11 @@
 		    <artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 
+        <dependency>
+            <groupId>org.thymeleaf.extras</groupId>
+            <artifactId>thymeleaf-extras-springsecurity5</artifactId>
+        </dependency>
+
 		<!-- https://mvnrepository.com/artifact/org.webjars/jquery -->
 		<dependency>
 			<groupId>org.webjars</groupId>
@@ -62,6 +67,13 @@
 			<groupId>org.webjars</groupId>
 			<artifactId>bootstrap</artifactId>
 			<version>${bootstrap.version}</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.webjars/font-awesome -->
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>font-awesome</artifactId>
+			<version>${font-awesome.version}</version>
 		</dependency>
 
 		<!-- spring boot starter test -->
