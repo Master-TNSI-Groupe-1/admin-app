@@ -1,31 +1,30 @@
 package com.application.controller;
 
-import com.application.service.TestService;
+import com.application.configuration.PageHTML;
+import com.application.configuration.PageURL;
+import com.application.dto.UsersDTO;
+import com.application.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class MainController {
 
 	@Autowired
-	TestService testService;
+	UserService userService;
 
-	@RequestMapping("/test")
-	public String test() {
-		System.out.println("On est ici");
-		System.out.println(testService.getAllTest());
-		return "main";
+	@RequestMapping(PageURL.all)
+	public String defaultUrl() {
+		return "redirect:"+ PageURL.home;
 	}
 	
-	@RequestMapping("/")
-	public String getHome() {
-		return "main";
+	@RequestMapping(PageURL.home)
+	public String getHome(Model model) {
+		UsersDTO usersDTO = (UsersDTO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		model.addAttribute("user", usersDTO);
+		return PageHTML.homeHTML;
 	}
-	
-	@RequestMapping("/authenticated")
-	public String getAuthenticated() {
-		return "secret";
-	}
-	
 }

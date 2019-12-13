@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr-fr" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link href="webjars/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" th:href="@{/css/general.css}"/>
+    <link rel="stylesheet" th:href="@{/css/home.css}"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+
+<!-- Side navigation -->
+<div th:include="navbar.html" id="navigation" class="sidenav"></div>
+
+<!-- Page content -->
+<div class="main">
+    <div class="row justify-content-center">
+        <div class="col-6">
+            <h1>Panneau d'administration Flux Monitoring</h1>
+        </div>
+    </div>
+    <div class="row justify-content-end">
+        <div class="col-2">
+            <h2>Bonjour, <strong th:text='${user.firstName}'></strong> </h2>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/popper.js/1.14.3/umd/popper.min.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/bootstrap/4.4.1/js/bootstrap.min.js}"></script>
+
+</body>
+</html>

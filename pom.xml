@@ -8,11 +8,10 @@
 		<version>2.2.1.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.myApp</groupId>
-	<artifactId>TNSI-Project</artifactId>
+	<groupId>com.application</groupId>
+	<artifactId>admin-app</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Simon-StarterProject</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Admin Project Pair a Pair</description>
 
 	<properties>
 		<java.version>11</java.version>
@@ -42,6 +41,11 @@
 		    <groupId>org.springframework.boot</groupId>
 		    <artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
+
+        <dependency>
+            <groupId>org.thymeleaf.extras</groupId>
+            <artifactId>thymeleaf-extras-springsecurity5</artifactId>
+        </dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.webjars/jquery -->
 		<dependency>

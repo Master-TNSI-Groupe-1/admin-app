@@ -1,6 +1,6 @@
 package com.application.service;
 
-import com.application.entity.Test;
+import com.application.dto.Test;
 
 import java.util.List;
 
