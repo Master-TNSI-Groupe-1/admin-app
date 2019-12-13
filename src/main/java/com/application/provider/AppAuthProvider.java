@@ -23,7 +23,7 @@ public class AppAuthProvider extends DaoAuthenticationProvider {
                 .toString();
         UserDetails user = userService.loadUserByUsername(name);
         if (user == null) {
-            throw new BadCredentialsException(ErrorMessage.userOrPasswordNotMatchFor + auth.getPrincipal());
+            throw new BadCredentialsException(ErrorMessage.badCredential + auth.getPrincipal());
         }
         return new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
     }
