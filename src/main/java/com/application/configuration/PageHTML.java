@@ -2,6 +2,8 @@ package com.application.configuration;
 
 public interface PageHTML {
 
-    String homeHTML = "home";
-    String loginHTML = "login";
+    String home = "home";
+    String login = "login";
+    String placeCreate = "places-create";
+    String placeUpdate = "places-update";
 }

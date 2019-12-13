@@ -6,6 +6,11 @@ public interface PageURL {
     String loginError = "/login-error";
     String logout = "/logout";
     String home = "/home";
+
+    String place = "/places";
+    String createPlace = "/create";
+    String updatePlace = "/update";
+
     String css = "/css/**";
     String js = "/js/**";
     String webjars = "/webjars/**";

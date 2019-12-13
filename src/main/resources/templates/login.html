@@ -2,9 +2,9 @@
 <html lang="fr-fr" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Log in</title>
-    <link href="webjars/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" th:href="@{/css/login.css}"/>
+    <title>Flux Monitoring | Connexion</title>
+    <link th:href="@{/webjars/bootstrap/4.4.1/css/bootstrap.min.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/css/login.css}" rel="stylesheet" type="text/css"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
@@ -15,27 +15,27 @@
         <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
             <div class="card card-signin my-5">
                 <div class="card-body">
-                    <h5 class="card-title text-center">Sign in</h5>
+                    <h5 class="card-title text-center">Connexion</h5>
                     <form class="form-signin" th:action="@{/login}" method="post">
                         <div class="alert alert-danger" th:if="${errorMessage}" th:text="${errorMessage}"></div>
                         <div class="form-label-group">
-                            <input type="text" id="username" name="username" class="form-control" placeholder="username" required autofocus>
-                            <label for="username">User name</label>
+                            <input type="text" id="utilisateur" name="utilisateur" class="form-control" placeholder="Utilisateur" required autofocus>
+                            <label for="utilisateur">Utilisateur</label>
                         </div>
 
                         <div class="form-label-group">
-                            <input type="password" id="password" name="password" class="form-control" placeholder="password" required>
-                            <label for="password">Password</label>
+                            <input type="mdp" id="mdp" name="mdp" class="form-control" placeholder="Mot de passe" required>
+                            <label for="mdp">Mot de passe</label>
                         </div>
 
                         <div class="custom-control custom-checkbox mb-3">
                             <input type="checkbox" class="custom-control-input" id="customCheck1">
-                            <label class="custom-control-label" for="customCheck1">Save password</label>
+                            <label class="custom-control-label" for="customCheck1">Sauvegarder le mdp</label>
                         </div>
 
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 
-                        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Log in</button>
+                        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Connexion</button>
 <!--                        <hr class="my-4">-->
 <!--                        <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"> Sign up</button>-->
                     </form>

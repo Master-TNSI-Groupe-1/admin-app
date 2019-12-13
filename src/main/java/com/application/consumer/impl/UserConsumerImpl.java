@@ -13,6 +13,7 @@ public class UserConsumerImpl implements UserConsumer {
     @Override
     public Optional<UsersDTO> getUserByUsername(final String username) {
         Optional<UsersDTO> usersDTO = Optional.empty();
+        //TODO MOCK
         if(username.equals("Pierre")) {
             usersDTO = Optional.of(new UsersDTO());
             usersDTO.get().setIdUser(1);
@@ -25,4 +26,13 @@ public class UserConsumerImpl implements UserConsumer {
         }
         return usersDTO;
     }
+
+//    public List<Test> getAllTest() {
+//        ResponseEntity<List<Test>> response = restTemplate.exchange(
+//                ApiEndPoint.GET_EMPLOYEES_ENDPOINT_URL,
+//                HttpMethod.GET,
+//                null,
+//                new ParameterizedTypeReference<>(){});
+//        return response.getBody();
+//    }
 }

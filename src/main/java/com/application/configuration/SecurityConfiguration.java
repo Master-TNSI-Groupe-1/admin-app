@@ -1,7 +1,7 @@
 package com.application.configuration;
 
 import com.application.provider.AppAuthProvider;
-import com.application.service.UserService;
+import com.application.service.impl.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,14 +17,15 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfiguration  extends WebSecurityConfigurerAdapter{
 
-	public static final String USERNAME = "username";
-	public static final String PASSWORD = "password";
-	public static final int MAXIMUM_SESSIONS = 1;
+	private static final String USERNAME = "utilisateur";
+	private static final String PASSWORD = "mdp";
+	private static final int MAXIMUM_SESSIONS = 1;
+
 	@Autowired
 	PasswordEncoder passwordEncoder;
 
 	@Autowired
-	UserService userDetailsService;
+    UserDetailsImpl userDetailsService;
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {

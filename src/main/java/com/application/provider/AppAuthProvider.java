@@ -2,7 +2,7 @@ package com.application.provider;
 
 
 import com.application.configuration.ErrorMessage;
-import com.application.service.UserService;
+import com.application.service.impl.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -13,7 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 public class AppAuthProvider extends DaoAuthenticationProvider {
 
     @Autowired
-    UserService userService;
+    UserDetailsImpl userService;
 
     @Override
     public Authentication authenticate(Authentication authentication) throws BadCredentialsException {
