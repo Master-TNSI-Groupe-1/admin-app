@@ -5,10 +5,10 @@
 <body>
 <header th:fragment="navbar">
     <nav>
-        <a th:href="@{/home}">Home Page</a>
-        <a sec:authorize="!isAuthenticated()" th:href="@{/login}">Log In</a>
-        <a sec:authorize="isAuthenticated()" th:href="@{/places/create}">Create place</a>
-        <a sec:authorize="isAuthenticated()" th:href="@{/places/update}">Update place</a>
+        <a th:href="@{/home}">Accueil</a>
+        <a sec:authorize="!isAuthenticated()" th:href="@{/login}">Connexion</a>
+        <a sec:authorize="isAuthenticated()" th:href="@{/places/create}">Création de lieu</a>
+        <a sec:authorize="isAuthenticated()" th:href="@{/places/update}">Modification d'un lieu</a>
         <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
             <input type="submit" class="btn btn-danger" value="Logout" />
         </form>

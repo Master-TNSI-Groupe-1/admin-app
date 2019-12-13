@@ -3,7 +3,7 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <title>Flux Monitoring | Création de lieux</title>
+    <title>Flux Monitoring | Création d'un lieu</title>
     <link th:href="@{/webjars/bootstrap/4.4.1/css/bootstrap.min.css}" rel="stylesheet" type="text/css" />
     <link th:href="@{/webjars/font-awesome/5.11.2/css/fontawesome.min.css}" rel="stylesheet" type="text/css" />
     <link th:href="@{/css/general.css}" rel="stylesheet" type="text/css"/>
@@ -29,9 +29,16 @@
         </div>
     </div>
     <div>
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Création d'un lieu</h2>
+            </div>
+        </div>
+    </div>
+    <div>
         <div class="row justify-content-start">
             <div class="col-md-12">
-                <h2>Ajouter un lieu</h2>
+                <h3>Ajouter un lieu</h3>
             </div>
         </div>
         <form class="row justify-content-start" th:action="@{/places/create}" method="post">
@@ -46,31 +53,35 @@
     <div>
         <div class="row justify-content-start">
             <div class="col-md-12">
-                <h2>Ajouter une position</h2>
+                <h3>Ajouter une position</h3>
             </div>
         </div>
-        <table border="1" style="width:300px">
-            <tr th:each="point : ${points}">
-                <td th:text="${point.latitude}"></td>
-                <td th:text="${point.longitude}"></td>
-            </tr>
-            <tr>
-                <form class="row justify-content-start" th:action="@{/places/point/add}" method="post">
-                    <td><input class="form-control"
-                               type="number"
-                               th:value="${newPoint.latitude}" id="newPointLatitude" name="newPointLatitude" min="0" /></td>
-                    <td><input class="form-control"
-                               type="number"
-                               th:value="${newPoint.longitude}" id="newPointLongitude" name="newPointLongitude" min="0" /></td>
-                    <td><button type="submit">Ajouter</button></td>
-                </form>
-            </tr>
-        </table>
+        <div class="row justify-content-start">
+            <div class="col-md-12">
+                <table class="table">
+                    <tr th:each="point : ${points}">
+                        <td th:text="${point.latitude}"></td>
+                        <td th:text="${point.longitude}"></td>
+                    </tr>
+                    <tr>
+                        <form th:action="@{/places/point/add}" method="post">
+                            <td><input class="form-control"
+                                       type="number"
+                                       th:value="${newPoint.latitude}" id="newPointLatitude" name="newPointLatitude" min="0" /></td>
+                            <td><input class="form-control"
+                                       type="number"
+                                       th:value="${newPoint.longitude}" id="newPointLongitude" name="newPointLongitude" min="0" /></td>
+                            <td><button type="submit" class="btn btn-outline-success">Ajouter une autre position +</button></td>
+                        </form>
+                    </tr>
+                </table>
+            </div>
+        </div>
     </div>
     <div>
         <div class="row justify-content-start">
             <div class="col-md-12">
-                <h2>Nombre de places totales</h2>
+                <h3>Nombre de places totales</h3>
             </div>
         </div>
         <div class="row justify-content-start">
