@@ -1,0 +1,162 @@
+.title{
+    margin-top: 5%;
+}
+
+.page-name{
+    color: #74b9ff;
+    width: 100%;
+    font-family: 'Satisfy', cursive;
+}
+
+.content-title{
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+}
+
+.content-title p{
+    margin-right: 3em;
+}
+
+
+.nav-tabs{
+    margin-top: 3em;
+    margin-bottom: 2em;
+}
+
+.submit{
+    display: flex;
+    justify-content: center;
+}
+
+.submit button{
+    margin-top: 2em;
+    width: 97%;
+    background-color: #74b9ff;
+    color: white;
+}
+
+.position-text{
+    color: #74b9ff;
+    margin-top: 1em;
+    margin-bottom: -1em;
+}
+
+.card-header{
+    color: #74b9ff;
+    font-weight: bold;
+}
+
+/* Start dynamic INPUT */
+
+.form-wrapper {
+    max-width: 30%;
+    min-width: 400px;
+    padding: 50px 30px 50px 30px;
+    margin: 50px auto;
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 15px 35px rgba(50,50,93,.1),0 5px 15px rgba(0,0,0,.07);
+}
+
+.form-group {
+    position:relative;
+
+    & + .form-group {
+          margin-top: 30px;
+      }
+}
+
+.form-label {
+    position: absolute;
+    left: 0;
+    top: 10px;
+    color: #999;
+    background-color: #fff;
+    z-index: 10;
+    transition: transform 150ms ease-out, font-size 150ms ease-out;
+}
+
+.focused .form-label {
+    transform: translateY(-125%);
+    font-size: .75em;
+}
+
+.form-input {
+    position: relative;
+    padding: 12px 0 5px 0;
+    width: 100%;
+    outline: 0;
+    border: 0;
+    box-shadow: 0 1px 0 0 #e5e5e5;
+    transition: box-shadow 150ms ease-out;
+
+    &:focus {
+         box-shadow: 0 2px 0 0 blue;
+     }
+}
+
+.form-input.filled {
+
+}
+/* END */
+
+.position{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-top: 2em;
+}
+
+.position .form-group{
+    margin-right: 1em;
+}
+
+.position button{
+    height: 2.4em;
+    padding-left: 0;
+    margin-left: 1em;
+    margin-top: 0.5em;
+}
+
+.space{
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.big{
+    margin-top: 2em;
+}
+
+.card-space{
+    margin-top: 2em;
+}
+
+.title-space{
+    margin-top: 3em;
+    text-align: end;
+}
+
+.disconnect{
+    width: 100%;
+    text-align: end;
+    color: rgb(191, 191, 191) !important;
+    cursor: pointer;
+}
+
+#update_location, .update-location-card{
+    display: none;
+}
+
+.add-position-button{
+    width: 100%;
+    margin-top: 2.5em;
+    margin-bottom: 1em;
+}
+
+.add-position-button button{
+    width: 100%;
+}
+
+.update-page{
+    margin-top: 2em;
+    margin-bottom: 1em;
+}

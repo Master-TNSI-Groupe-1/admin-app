@@ -3,28 +3,234 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <title>Flux Monitoring | Accueil</title>
+    <title>Flux Monitoring | Création d'un lieu</title>
     <link th:href="@{/webjars/bootstrap/4.4.1/css/bootstrap.min.css}" rel="stylesheet" type="text/css" />
-    <link th:href="@{/webjars/font-awesome/5.11.2/css/font-awesome.min.css}" rel="stylesheet" type="text/css" />
-    <link th:href="@{/css/general.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/webjars/font-awesome/4.7.0/css/fontawesome.min.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/css/home.css}" rel="stylesheet" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Satisfy&display=swap" rel="stylesheet">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
 
-<!-- Side navigation -->
-<div th:include="navbar.html" id="navigation" class="sidenav"></div>
+<div class="main container">
 
-<!-- Page content -->
-<div class="main">
-    <div class="row justify-content-center">
-        <div class="col-6">
-            <h1>Panneau d'administration Flux Monitoring</h1>
+    <div class="title">
+        <div class="content-title">
+            <h3 class="page-name">FluxMonitoring - Administration</h3>
+            <a sec:authorize="isAuthenticated()" href="#" th:href="@{/logout}" class="disconnect"> <i class="fa fa-sign-out"></i> Deconnexion </a>
+            <a sec:authorize="!isAuthenticated()" th:href="@{/login}" class="disconnect"> <i class="fa fa-sign-out"></i> Login </a>
         </div>
     </div>
-    <div class="row justify-content-end">
-        <div class="col-2">
-            <h2>Bonjour, <strong th:text='${user.firstName}'></strong> </h2>
+
+    <hr>
+
+    <div class="title-space" >
+        <p>Bonjour, <strong> <span th:text='${user.firstname}'></span> !</strong> (Site Administré : ISTV) </p>
+    </div>
+
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link active">Creer un Lieu</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link">Modifier un Lieu</a>
+        </li>
+    </ul>
+
+    <div id="create_location">
+        <div class="card card-body">
+
+            <div class="card">
+                <div class="card-header">
+                    Configuration - Standard
+                </div>
+
+                <div class="card-body">
+                    <div class="form-group space">
+                        <label class="form-label" for="ndc">Nom du lieu (exemple : Restaurant Universitaire)</label>
+                        <input id="ndc" class="form-input" type="text">
+                    </div>
+
+                    <div class="form-group space">
+                        <label class="form-label" for="place-max">Nombre de place de votre lieu (exemple : 150)</label>
+                        <input id="place-max" class="form-input" type="text">
+                    </div>
+                </div>
+            </div>
+
+            <div class="card card-space">
+                <div class="card-header">
+                    Configuration - Position
+                </div>
+                <div class="card-body">
+                    <div class="position-container">
+                        <div class="position">
+                            <div class="form-group">
+                                <label class="form-label" for="longitude">Longitude (exemple : 394.29923094)</label>
+                                <input id="longitude" class="form-input" type="number">
+                            </div>
+
+                            <div class="form-group special-form">
+                                <label class="form-label" for="latitude">Latitude (exemple : 13.24312315433)</label>
+                                <input id="latitude" class="form-input" type="number">
+                            </div>
+
+                            <div>
+                                <button id="appendPositionButton" class="btn btn-outline-success">
+                                    <i class="fa fa-plus" aria-hidden="true"></i> Ajouter
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card card-space">
+                <div class="card-header">
+                    Configuration - Capteur
+                </div>
+
+                <div class="card-body">
+
+                    <div class="capteurs-container ">
+                        <div class="capteur row">
+                            <div class="form-group col-sm-4">
+                                <label class="form-label form-label-special" for="capteur-id">ID de votre capteur</label>
+                                <input id="capteur-id" class="form-input" type="text">
+                            </div>
+
+                            <div class="switch col-sm-5">
+                                <label>
+                                    Capteur <span> <strong> d'entrée </strong> </span>
+                                    <input class="mode-test-checkbox filled" type="checkbox" checked="checked">
+                                    <span class="lever"></span> <span> Capteur <strong>de sortie </strong> </span>
+                                </label>
+                            </div>
+
+                            <button id="appendCapteurButton" class="btn btn-outline-success col-sm-3 button-append-capteur">
+                                <i class="fa fa-plus" aria-hidden="true"></i> Ajouter
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="submit">
+                <button type="button" class="btn btn-default"> <i class="fa fa-check" aria-hidden="true"></i> Creer votre lieu !</button>
+            </div>
         </div>
+    </div>
+
+    <div id="update_location">
+
+        <div class="card">
+            <div class="card-header">
+                Selection du lieu à modifier
+            </div>
+
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="selectLocation">Liste de vos lieux :</label>
+                    <select id="selectLocation" class="form-control">
+                        <option>Lieu à modifier</option>
+                        <option>ISTV</option>
+                        <option>Restaurant Universitaire</option>
+                        <option>Bibliotheque Universitaire</option>
+                        <option>Parking ISTV1</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="card card-space update-location-card">
+            <div class="card-header">
+                Modification du lieu <strong> <span id="lieuSelected"></span> </strong>
+            </div>
+
+            <div class="card-body">
+
+                <div class="container">
+                    <div class="form-group space">
+                        <label class="form-label" for="locationName">Modifier le nom de votre lieu</label>
+                        <input id="locationName" class="form-input" type="text">
+                    </div>
+
+                    <div class="form-group space">
+                        <label class="form-label" for="locationPersonMax">Modifier le nombre de personnes maximum</label>
+                        <input id="locationPersonMax" class="form-input" type="number">
+                    </div>
+
+
+                    <div class="position-container update-page">
+                        <div class="position">
+                            <div class="form-group longitude-form">
+                                <label class="form-label" for="longitude_update">Longitude (exemple : 394.29923094)</label>
+                                <input id="longitude_update" class="form-input" type="number">
+                            </div>
+
+                            <div class="form-group latitude-form">
+                                <label class="form-label" for="latitude_update">Latitude (exemple : 13.24312315433)</label>
+                                <input id="latitude_update" class="form-input" type="number">
+                            </div>
+
+                            <button id="appendPositionUpdateButton" class="btn btn-outline-success">
+                                <i class="fa fa-plus" aria-hidden="true"></i> Ajouter
+                            </button>
+                        </div>
+                    </div>
+
+
+                    <div class="position-container-update">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Longitude</th>
+                                <th>Latitude</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody id="update_position_collection">
+                            <tr>
+                                <td>394.29923094</td>
+                                <td>13.24312315433</td>
+                                <td>
+                                    <button class="btn btn-danger removeLocationBtn">
+                                        <i class="fa fa-trash remove-position" aria-hidden="true"></i> Supprimer
+                                    </button>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>394.29923094</td>
+                                <td>13.24312315433</td>
+                                <td>
+                                    <button class="btn btn-danger removeLocationBtn">
+                                        <i class="fa fa-trash remove-position" aria-hidden="true"></i> Supprimer
+                                    </button>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>394.29923094</td>
+                                <td>13.24312315433</td>
+                                <td>
+                                    <button class="btn btn-danger removeLocationBtn">
+                                        <i class="fa fa-trash remove-position" aria-hidden="true"></i> Supprimer
+                                    </button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="submit">
+                    <button type="button" class="btn btn-default"> <i class="fa fa-save"></i> Sauvegarder les modifications de votre lieu !</button>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 
@@ -32,6 +238,7 @@
 <script type="text/javascript" th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
 <script type="text/javascript" th:src="@{/webjars/popper.js/1.14.3/umd/popper.min.js}"></script>
 <script type="text/javascript" th:src="@{/webjars/bootstrap/4.4.1/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/home.js}"></script>
 
 </body>
 </html>

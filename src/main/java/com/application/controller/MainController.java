@@ -2,7 +2,7 @@ package com.application.controller;
 
 import com.application.configuration.PageHTML;
 import com.application.configuration.PageURL;
-import com.application.dto.UsersDTO;
+import com.application.entity.Users;
 import com.application.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,7 +22,7 @@ public class MainController {
 	
 	@RequestMapping(PageURL.home)
 	public String getHome(Model model) {
-		UsersDTO usersDTO = userService.getLoggedUser();
+		Users usersDTO = userService.getLoggedUser();
 		model.addAttribute("user", usersDTO);
 		return PageHTML.home;
 	}
