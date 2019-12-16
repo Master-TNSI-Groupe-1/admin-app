@@ -1,15 +1,28 @@
-package com.application.dto;
+package com.application.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
+@Entity
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PointXY implements Serializable {
-    private int idPoint;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_point")
+    private Integer idPoint;
+
+    @Basic
     private int latitude;
+
+    @Basic
     private int longitude;
-    private int idLocation;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="id_location")
+    private Location location;
 
     public PointXY() {}
 
@@ -37,11 +50,11 @@ public class PointXY implements Serializable {
         this.longitude = longitude;
     }
 
-    public int getIdLocation() {
-        return idLocation;
+    public Location getLocation() {
+        return location;
     }
 
-    public void setIdLocation(int idLocation) {
-        this.idLocation = idLocation;
+    public void setLocation(Location location) {
+        this.location = location;
     }
 }

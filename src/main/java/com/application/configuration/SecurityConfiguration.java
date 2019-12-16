@@ -17,19 +17,21 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfiguration  extends WebSecurityConfigurerAdapter{
 
-	private static final String USERNAME = "utilisateur";
-	private static final String PASSWORD = "mdp";
+	private static final String USERNAME = "username";
+	private static final String PASSWORD = "password";
 	private static final int MAXIMUM_SESSIONS = 1;
-
-	@Autowired
-	PasswordEncoder passwordEncoder;
 
 	@Autowired
     UserDetailsImpl userDetailsService;
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userDetailsService);
+		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+	}
+
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
 	}
 
 
@@ -44,7 +46,7 @@ public class SecurityConfiguration  extends WebSecurityConfigurerAdapter{
 		http.authorizeRequests().anyRequest().authenticated();
 
 		// Config for Login Form
-		http.authorizeRequests().and().authenticationProvider(getProvider())
+		http.authorizeRequests().and()
 				.formLogin().loginPage(PageURL.login).defaultSuccessUrl(PageURL.home).failureUrl(PageURL.loginError)
 				.usernameParameter(USERNAME).passwordParameter(PASSWORD)
 				.and()
@@ -52,18 +54,5 @@ public class SecurityConfiguration  extends WebSecurityConfigurerAdapter{
 				.logout().invalidateHttpSession(true).logoutUrl(PageURL.logout).logoutSuccessUrl(PageURL.login);
 		// config number session
 		http.sessionManagement().maximumSessions(MAXIMUM_SESSIONS).expiredUrl(PageURL.login);
-	}
-
-	@Bean
-	public AuthenticationProvider getProvider() {
-		AppAuthProvider provider = new AppAuthProvider();
-		provider.setUserDetailsService(userDetailsService);
-		return provider;
-	}
-
-
-	@Bean
-	public BCryptPasswordEncoder encoder() {
-		return new BCryptPasswordEncoder();
 	}
 }
