@@ -1,13 +1,9 @@
 package com.application.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class PointXY implements Serializable {
+public class PointXY {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

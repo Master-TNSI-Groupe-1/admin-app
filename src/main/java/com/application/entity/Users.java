@@ -1,18 +1,16 @@
 package com.application.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.application.entity.type.RoleType;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Collection;
 import java.util.Collections;
 
 @Entity
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class Users implements Serializable, UserDetails {
+public class Users implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,14 +1,10 @@
 package com.application.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class Site implements Serializable {
+public class Site {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)

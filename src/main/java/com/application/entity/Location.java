@@ -1,14 +1,10 @@
 package com.application.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class Location implements Serializable {
+public class Location {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -93,5 +89,9 @@ public class Location implements Serializable {
 
     public void setSensorsList(List<Sensors> sensorsList) {
         this.sensorsList = sensorsList;
+    }
+
+    public void setIdLocation(Integer idLocation) {
+        this.idLocation = idLocation;
     }
 }

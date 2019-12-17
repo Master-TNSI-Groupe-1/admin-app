@@ -3,6 +3,7 @@ package com.application.controller;
 import com.application.configuration.PageHTML;
 import com.application.configuration.PageURL;
 import com.application.entity.Users;
+import com.application.service.SiteService;
 import com.application.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,9 @@ public class MainController {
 	@Autowired
 	UserService userService;
 
+	@Autowired
+	SiteService siteService;
+
 	@RequestMapping(PageURL.all)
 	public String defaultUrl() {
 		return "redirect:"+ PageURL.home;
@@ -22,8 +26,8 @@ public class MainController {
 	
 	@RequestMapping(PageURL.home)
 	public String getHome(Model model) {
-		Users usersDTO = userService.getLoggedUser();
-		model.addAttribute("user", usersDTO);
+		model.addAttribute("user", userService.getLoggedUser());
+		model.addAttribute("sites", siteService.findAllSite());
 		return PageHTML.home;
 	}
 }

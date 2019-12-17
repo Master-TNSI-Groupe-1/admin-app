@@ -67,6 +67,7 @@ $(document).ready(function(){
     $('#selectLocation').change(function(){
         let currentLocation = $(this).val();
 
+        console.log(currentLocation);
         if( currentLocation !== UPDATE_LIEU ){
             $('#lieuSelected').text(currentLocation);
             $('.update-location-card').fadeIn();

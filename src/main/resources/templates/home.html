@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>Flux Monitoring | Création d'un lieu</title>
     <link th:href="@{/webjars/bootstrap/4.4.1/css/bootstrap.min.css}" rel="stylesheet" type="text/css" />
-    <link th:href="@{/webjars/font-awesome/4.7.0/css/fontawesome.min.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/webjars/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet" type="text/css" />
     <link th:href="@{/css/home.css}" rel="stylesheet" type="text/css"/>
     <link href="https://fonts.googleapis.com/css?family=Satisfy&display=swap" rel="stylesheet">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -53,7 +53,7 @@
 
                     <div class="form-group space">
                         <label class="form-label" for="place-max">Nombre de place de votre lieu (exemple : 150)</label>
-                        <input id="place-max" class="form-input" type="text">
+                        <input id="place-max" class="form-input" type="number" min="0">
                     </div>
                 </div>
             </div>
@@ -132,12 +132,9 @@
             <div class="card-body">
                 <div class="form-group">
                     <label for="selectLocation">Liste de vos lieux :</label>
-                    <select id="selectLocation" class="form-control">
-                        <option>Lieu à modifier</option>
-                        <option>ISTV</option>
-                        <option>Restaurant Universitaire</option>
-                        <option>Bibliotheque Universitaire</option>
-                        <option>Parking ISTV1</option>
+                    <select name="site" id="selectLocation" class="form-control" th:field="*{sites}" th:remove="all-but-first">
+                        <option th:each="site : ${sites}"
+                                th:value="${site}" th:text="${site.name}"></option>
                     </select>
                 </div>
             </div>
