@@ -27,7 +27,6 @@ public class MainController {
 	@RequestMapping(PageURL.home)
 	public String getHome(Model model) {
 		model.addAttribute("user", userService.getLoggedUser());
-		model.addAttribute("sites", siteService.findAllSite());
 		return PageHTML.home;
 	}
 }

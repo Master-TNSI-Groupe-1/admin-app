@@ -11,22 +11,20 @@ import java.util.List;
 public class SiteDTO implements Serializable {
 
     private Integer idSite;
-
     private String name;
-
     private String urlImage;
-
     private String city;
-
     private boolean isEnabled;
-
     private List<LocationDTO> locationList;
 
-    private List<UsersDTO> usersList;
+    public SiteDTO() {}
 
-    public SiteDTO() {
-        locationList = new ArrayList<>();
-        usersList = new ArrayList<>();
+    public Integer getIdSite() {
+        return idSite;
+    }
+
+    public void setIdSite(Integer idSite) {
+        this.idSite = idSite;
     }
 
     public String getName() {
@@ -67,22 +65,6 @@ public class SiteDTO implements Serializable {
 
     public void setLocationList(List<LocationDTO> locationList) {
         this.locationList = locationList;
-    }
-
-    public List<UsersDTO> getUsersList() {
-        return usersList;
-    }
-
-    public void setUsersList(List<UsersDTO> usersList) {
-        this.usersList = usersList;
-    }
-
-    public Integer getIdSite() {
-        return idSite;
-    }
-
-    public void setIdSite(Integer idSite) {
-        this.idSite = idSite;
     }
 
     @Override

@@ -9,19 +9,13 @@ import java.io.Serializable;
 public class UsersDTO implements Serializable {
 
     private Integer idUser;
-
+    private SiteDTO site;
     private String firstname;
-
     private String lastname;
-
     private String username;
-
-    private String password;
-
     private boolean isEnabled;
 
-    public UsersDTO() {
-    }
+    public UsersDTO() { }
 
     public Integer getIdUser() {
         return idUser;
@@ -29,6 +23,14 @@ public class UsersDTO implements Serializable {
 
     public void setIdUser(Integer idUser) {
         this.idUser = idUser;
+    }
+
+    public SiteDTO getSite() {
+        return site;
+    }
+
+    public void setSite(SiteDTO site) {
+        this.site = site;
     }
 
     public String getFirstname() {
@@ -53,14 +55,6 @@ public class UsersDTO implements Serializable {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public boolean isEnabled() {

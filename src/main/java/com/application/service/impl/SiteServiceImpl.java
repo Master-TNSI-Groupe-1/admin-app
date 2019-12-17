@@ -21,7 +21,12 @@ public class SiteServiceImpl implements SiteService {
     public List<SiteDTO> findAllSite() {
         List<SiteDTO> siteDTOList = new ArrayList<>();
         for(Site site : siteRepository.findAll()) {
-            siteDTOList.add(SiteMapper.entityToDTO(site));
+            //System.out.println(site.getName() + site.getUserOwner().getFirstname());
+
+            // La condition a implementé c'est
+            // Si l'utilisateur de la session est égale a l'utilisateur du site courant.
+            if(site.getUserOwner() != null)
+                siteDTOList.add(SiteMapper.entityToDTO(site));
         }
         return siteDTOList;
     }

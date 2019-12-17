@@ -1,11 +1,10 @@
 package com.application.dto.mapper;
 
-import com.application.dto.LocationDTO;
 import com.application.dto.SiteDTO;
-import com.application.dto.UsersDTO;
-import com.application.entity.Location;
 import com.application.entity.Site;
-import com.application.entity.Users;
+import org.apache.commons.collections4.CollectionUtils;
+
+import java.util.ArrayList;
 
 public class SiteMapper {
 
@@ -14,14 +13,11 @@ public class SiteMapper {
         siteDTO.setIdSite(site.getIdSite());
         siteDTO.setCity(site.getCity());
         siteDTO.setEnabled(site.isEnabled());
-        for(Location location : site.getLocationList()) {
-            siteDTO.getLocationList().add(LocationMapper.entityToDTO(location));
+        if(CollectionUtils.isNotEmpty(site.getLocationList())) {
+            siteDTO.setLocationList(new ArrayList<>(LocationMapper.entityToDTO(site.getLocationList())));
         }
         siteDTO.setName(site.getName());
         siteDTO.setUrlImage(site.getUrlImage());
-        for(Users users : site.getUsersList()) {
-            siteDTO.getUsersList().add(UsersMapper.entityToDTO(users));
-        }
         return siteDTO;
     }
 
@@ -30,14 +26,11 @@ public class SiteMapper {
         site.setIdSite(siteDTO.getIdSite());
         site.setCity(siteDTO.getCity());
         site.setEnabled(siteDTO.isEnabled());
-        for(LocationDTO locationDTO : siteDTO.getLocationList()) {
-            site.getLocationList().add(LocationMapper.dtoToEntity(locationDTO));
+        if(CollectionUtils.isNotEmpty(siteDTO.getLocationList())) {
+            site.setLocationList(new ArrayList<>(LocationMapper.dtoToEntity(siteDTO.getLocationList())));
         }
         site.setName(siteDTO.getName());
         site.setUrlImage(siteDTO.getUrlImage());
-        for(UsersDTO usersDTO : siteDTO.getUsersList()) {
-            site.getUsersList().add(UsersMapper.dtoToEntity(usersDTO));
-        }
         return site;
     }
 }

@@ -30,6 +30,14 @@ public class Location {
     @JoinColumn(name="id_site")
     private Site site;
 
+    @Basic
+    @Column(name = "number_places")
+    private int numberPlaces;
+
+    @Basic
+    @Column(name = "number_user")
+    private int numberUser;
+
     @OneToMany(mappedBy = "location", cascade = CascadeType.ALL)
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<PointXY> pointXYList;
@@ -98,5 +106,21 @@ public class Location {
 
     public void setIdLocation(Integer idLocation) {
         this.idLocation = idLocation;
+    }
+
+    public int getNumberPlaces() {
+        return numberPlaces;
+    }
+
+    public void setNumberPlaces(int numberPlaces) {
+        this.numberPlaces = numberPlaces;
+    }
+
+    public int getNumberUser() {
+        return numberUser;
+    }
+
+    public void setNumberUser(int numberUser) {
+        this.numberUser = numberUser;
     }
 }

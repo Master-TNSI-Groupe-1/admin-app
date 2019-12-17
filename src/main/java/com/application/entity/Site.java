@@ -34,9 +34,8 @@ public class Site {
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Location> locationList;
 
-    @OneToMany(mappedBy = "site")
-    @LazyCollection(LazyCollectionOption.FALSE)
-    private List<Users> usersList;
+    @OneToOne(mappedBy = "site")
+    private Users userOwner;
 
     public Site() {}
 
@@ -92,11 +91,11 @@ public class Site {
         this.idSite = idSite;
     }
 
-    public List<Users> getUsersList() {
-        return usersList;
+    public Users getUserOwner() {
+        return userOwner;
     }
 
-    public void setUsersList(List<Users> usersList) {
-        this.usersList = usersList;
+    public void setUserOwner(Users userOwner) {
+        this.userOwner = userOwner;
     }
 }

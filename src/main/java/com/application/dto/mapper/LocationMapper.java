@@ -1,41 +1,63 @@
 package com.application.dto.mapper;
 
 import com.application.dto.LocationDTO;
-import com.application.dto.PointXYDTO;
-import com.application.dto.SensorsDTO;
 import com.application.entity.Location;
-import com.application.entity.PointXY;
-import com.application.entity.Sensors;
+import org.apache.commons.collections4.CollectionUtils;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 public class LocationMapper {
 
     public static LocationDTO entityToDTO(Location location) {
         LocationDTO locationDTO = new LocationDTO();
         locationDTO.setUrlImage(location.getUrlImage());
-        for(PointXY pointXY : location.getPointXYList()) {
-            locationDTO.getPointXYList().add(PointXYMapper.entityToDTO(pointXY));
+        if(CollectionUtils.isNotEmpty(location.getPointXYList())) {
+            locationDTO.setPointXYList(new ArrayList<>(PointXYMapper.entityToDTO(location.getPointXYList())));
         }
         locationDTO.setName(location.getName());
         locationDTO.setIdLocation(location.getIdLocation());
         locationDTO.setEnabled(location.isEnabled());
-        for(Sensors sensors : location.getSensorsList()) {
-            locationDTO.getSensorsList().add(SensorsMapper.entityToDTO(sensors));
+        if(CollectionUtils.isNotEmpty(location.getSensorsList())) {
+            locationDTO.setSensorsList(new ArrayList<>(SensorsMapper.entityToDTO(location.getSensorsList())));
         }
+        locationDTO.setNumberPlaces(location.getNumberPlaces());
+        locationDTO.setNumberUser(location.getNumberUser());
         return locationDTO;
     }
+
+    public static Collection<LocationDTO> entityToDTO(Collection<Location> locations) {
+        List<LocationDTO> locationDTOS = new ArrayList<>();
+        for (Location location : locations) {
+            locationDTOS.add(entityToDTO(location));
+        }
+        return locationDTOS;
+    }
+
 
     public static Location dtoToEntity(LocationDTO locationDTO) {
         Location location = new Location();
         location.setUrlImage(locationDTO.getUrlImage());
-        for(PointXYDTO pointXYDTO : locationDTO.getPointXYList()) {
-            location.getPointXYList().add(PointXYMapper.dtoToEntity(pointXYDTO));
+        if(CollectionUtils.isNotEmpty(locationDTO.getPointXYList())) {
+            location.setPointXYList(new ArrayList<>(PointXYMapper.dtoToEntity(locationDTO.getPointXYList())));
         }
         location.setName(locationDTO.getName());
         location.setIdLocation(locationDTO.getIdLocation());
         location.setEnabled(locationDTO.isEnabled());
-        for(SensorsDTO sensorsDTO : locationDTO.getSensorsList()) {
-            location.getSensorsList().add(SensorsMapper.dtoToEntity(sensorsDTO));
+        if(CollectionUtils.isNotEmpty(locationDTO.getSensorsList())) {
+            location.setSensorsList(new ArrayList<>(SensorsMapper.dtoToEntity(locationDTO.getSensorsList())));
         }
+        location.setNumberPlaces(locationDTO.getNumberPlaces());
+        location.setNumberUser(locationDTO.getNumberUser());
         return location;
+    }
+
+    public static Collection<Location> dtoToEntity(Collection<LocationDTO> locationDTOS) {
+        List<Location> locations = new ArrayList<>();
+        for (LocationDTO locationDTO : locationDTOS) {
+            locations.add(dtoToEntity(locationDTO));
+        }
+        return locations;
     }
 }

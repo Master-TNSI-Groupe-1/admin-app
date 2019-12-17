@@ -25,7 +25,7 @@
     <hr>
 
     <div class="title-space" >
-        <p>Bonjour, <strong> <span th:text='${user.firstname}'></span> !</strong> (Site Administré : ISTV) </p>
+        <p>Bonjour, <strong> <span th:text='${user.firstname}'></span> !</strong> (Site Administré : <span th:text='${user.site.name}'></span>) </p>
     </div>
 
     <ul class="nav nav-tabs">
@@ -132,9 +132,10 @@
             <div class="card-body">
                 <div class="form-group">
                     <label for="selectLocation">Liste de vos lieux :</label>
-                    <select name="site" id="selectLocation" class="form-control" th:field="*{sites}" th:remove="all-but-first">
-                        <option th:each="site : ${sites}"
-                                th:value="${site}" th:text="${site.name}"></option>
+                    <select th:name="site" id="selectLocation" class="form-control" th:required="true">
+                        <option value="">Lieu à modifier</option>
+                        <option th:each="location : ${user.site.locationList}" th:value="${location}"
+                                th:text="${location.name}"></option>
                     </select>
                 </div>
             </div>

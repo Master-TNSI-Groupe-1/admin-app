@@ -9,14 +9,11 @@ import java.io.Serializable;
 public class SensorsDTO implements Serializable {
 
     private Integer idSensor;
-
     private String ipConfig;
-
     private boolean isEnabled;
-
     private boolean isInput;
 
-    public SensorsDTO() { }
+    public SensorsDTO() {}
 
     public String getIpConfig() {
         return ipConfig;

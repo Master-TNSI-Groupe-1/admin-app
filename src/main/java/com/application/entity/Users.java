@@ -18,7 +18,7 @@ public class Users implements UserDetails {
     private Integer idUser;
 
     @Basic
-    @ManyToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="id_site")
     private Site site;
 

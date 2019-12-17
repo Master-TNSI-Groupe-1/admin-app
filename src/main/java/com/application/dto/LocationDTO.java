@@ -16,11 +16,10 @@ public class LocationDTO implements Serializable {
     private boolean isEnabled;
     private List<PointXYDTO> pointXYList;
     private List<SensorsDTO> sensorsList;
+    private int numberPlaces;
+    private int numberUser;
 
-    public LocationDTO() {
-        pointXYList = new ArrayList<>();
-        sensorsList = new ArrayList<>();
-    }
+    public LocationDTO() {}
 
     public String getName() {
         return name;
@@ -78,5 +77,21 @@ public class LocationDTO implements Serializable {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public int getNumberPlaces() {
+        return numberPlaces;
+    }
+
+    public void setNumberPlaces(int numberPlaces) {
+        this.numberPlaces = numberPlaces;
+    }
+
+    public int getNumberUser() {
+        return numberUser;
+    }
+
+    public void setNumberUser(int numberUser) {
+        this.numberUser = numberUser;
     }
 }

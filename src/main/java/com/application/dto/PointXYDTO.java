@@ -9,10 +9,10 @@ import java.io.Serializable;
 public class PointXYDTO implements Serializable {
 
     private Integer idPoint;
-
     private int latitude;
-
     private int longitude;
+
+    public PointXYDTO() {}
 
     public Integer getIdPoint() {
         return idPoint;

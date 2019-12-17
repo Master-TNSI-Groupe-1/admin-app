@@ -67,10 +67,19 @@ $(document).ready(function(){
     });
 
     $('#selectLocation').change(function(){
-        placeSelected = JSON.parse($(this).val());
-        console.log(placeSelected);
-        if( placeSelected !== UPDATE_LIEU ){
+        currentLocation = $(this).val();
+        if( currentLocation !== '' ){
+            placeSelected = JSON.parse(currentLocation);
+            console.log(placeSelected);
             $('#lieuSelected').text(placeSelected.name);
+            let $locationName = $('#locationName');
+            $locationName.val(placeSelected.name);
+            $locationName.closest('.form-group').addClass('focused');
+
+            let $locationPersonMax = $('#locationPersonMax');
+            $locationPersonMax.val(placeSelected.numberPlaces);
+            $locationPersonMax.closest('.form-group').addClass('focused');
+
             $('.update-location-card').fadeIn();
 
         }else{
