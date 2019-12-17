@@ -6,6 +6,8 @@ $(document).ready(function(){
 
     const $body = $('body');
 
+    var placeSelected = undefined;
+
     $.fn.outerHTML = function(s) {
         return s ? this.before(s).remove(): $("<p>").append(this.eq(0).clone()).html();
     };
@@ -65,11 +67,10 @@ $(document).ready(function(){
     });
 
     $('#selectLocation').change(function(){
-        let currentLocation = $(this).val();
-
-        console.log(currentLocation);
-        if( currentLocation !== UPDATE_LIEU ){
-            $('#lieuSelected').text(currentLocation);
+        placeSelected = JSON.parse($(this).val());
+        console.log(placeSelected);
+        if( placeSelected !== UPDATE_LIEU ){
+            $('#lieuSelected').text(placeSelected.name);
             $('.update-location-card').fadeIn();
 
         }else{

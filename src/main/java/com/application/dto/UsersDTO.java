@@ -1,6 +1,7 @@
 package com.application.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.Serializable;
 
@@ -72,13 +73,11 @@ public class UsersDTO implements Serializable {
 
     @Override
     public String toString() {
-        return "UsersDTO{" +
-                "idUser=" + idUser +
-                ", firstname='" + firstname + '\'' +
-                ", lastname='" + lastname + '\'' +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", isEnabled=" + isEnabled +
-                '}';
+        try {
+            return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
+        } catch (com.fasterxml.jackson.core.JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

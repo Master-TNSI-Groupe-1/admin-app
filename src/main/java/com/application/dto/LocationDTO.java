@@ -1,6 +1,7 @@
 package com.application.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -71,13 +72,11 @@ public class LocationDTO implements Serializable {
 
     @Override
     public String toString() {
-        return "LocationDTO{" +
-                "idLocation=" + idLocation +
-                ", name='" + name + '\'' +
-                ", urlImage='" + urlImage + '\'' +
-                ", isEnabled=" + isEnabled +
-                ", pointXYList=" + pointXYList +
-                ", sensorsList=" + sensorsList +
-                '}';
+        try {
+            return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
+        } catch (com.fasterxml.jackson.core.JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

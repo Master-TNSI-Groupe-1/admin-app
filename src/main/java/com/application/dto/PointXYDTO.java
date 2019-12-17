@@ -1,6 +1,7 @@
 package com.application.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.Serializable;
 
@@ -39,10 +40,11 @@ public class PointXYDTO implements Serializable {
 
     @Override
     public String toString() {
-        return "PointXYDTO{" +
-                "idPoint=" + idPoint +
-                ", latitude=" + latitude +
-                ", longitude=" + longitude +
-                '}';
+        try {
+            return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
+        } catch (com.fasterxml.jackson.core.JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

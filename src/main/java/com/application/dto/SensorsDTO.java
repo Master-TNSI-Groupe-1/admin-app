@@ -1,6 +1,7 @@
 package com.application.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.Serializable;
 
@@ -51,11 +52,11 @@ public class SensorsDTO implements Serializable {
 
     @Override
     public String toString() {
-        return "SensorsDTO{" +
-                "idSensor=" + idSensor +
-                ", ipConfig='" + ipConfig + '\'' +
-                ", isEnabled=" + isEnabled +
-                ", isInput=" + isInput +
-                '}';
+        try {
+            return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
+        } catch (com.fasterxml.jackson.core.JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
