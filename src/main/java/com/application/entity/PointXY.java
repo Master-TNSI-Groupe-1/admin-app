@@ -16,7 +16,7 @@ public class PointXY {
     @Basic
     private int longitude;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="id_location")
     private Location location;
 

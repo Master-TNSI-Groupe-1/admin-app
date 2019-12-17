@@ -10,7 +10,6 @@ public class PointXYMapper {
         pointXYDTO.setIdPoint(pointXY.getIdPoint());
         pointXYDTO.setLatitude(pointXY.getLatitude());
         pointXYDTO.setLongitude(pointXY.getLongitude());
-        pointXYDTO.setLocation(LocationMapper.entityToDTO(pointXY.getLocation()));
         return pointXYDTO;
     }
 
@@ -19,7 +18,6 @@ public class PointXYMapper {
         pointXY.setIdPoint(pointXYDTO.getIdPoint());
         pointXY.setLatitude(pointXYDTO.getLatitude());
         pointXY.setLongitude(pointXYDTO.getLongitude());
-        pointXY.setLocation(LocationMapper.dtoToEntity(pointXYDTO.getLocation()));
         return pointXY;
     }
 }

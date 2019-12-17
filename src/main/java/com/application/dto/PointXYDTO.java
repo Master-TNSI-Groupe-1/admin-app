@@ -13,12 +13,6 @@ public class PointXYDTO implements Serializable {
 
     private int longitude;
 
-    private LocationDTO location;
-
-    public PointXYDTO() {
-        location = new LocationDTO();
-    }
-
     public Integer getIdPoint() {
         return idPoint;
     }
@@ -43,21 +37,12 @@ public class PointXYDTO implements Serializable {
         this.longitude = longitude;
     }
 
-    public LocationDTO getLocation() {
-        return location;
-    }
-
-    public void setLocation(LocationDTO location) {
-        this.location = location;
-    }
-
     @Override
     public String toString() {
         return "PointXYDTO{" +
                 "idPoint=" + idPoint +
                 ", latitude=" + latitude +
                 ", longitude=" + longitude +
-                ", location=" + location +
                 '}';
     }
 }

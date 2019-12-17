@@ -9,8 +9,6 @@ public class UsersDTO implements Serializable {
 
     private Integer idUser;
 
-    private SiteDTO site;
-
     private String firstname;
 
     private String lastname;
@@ -22,7 +20,6 @@ public class UsersDTO implements Serializable {
     private boolean isEnabled;
 
     public UsersDTO() {
-        site = new SiteDTO();
     }
 
     public Integer getIdUser() {
@@ -31,14 +28,6 @@ public class UsersDTO implements Serializable {
 
     public void setIdUser(Integer idUser) {
         this.idUser = idUser;
-    }
-
-    public SiteDTO getSite() {
-        return site;
-    }
-
-    public void setSite(SiteDTO site) {
-        this.site = site;
     }
 
     public String getFirstname() {
@@ -85,7 +74,6 @@ public class UsersDTO implements Serializable {
     public String toString() {
         return "UsersDTO{" +
                 "idUser=" + idUser +
-                ", site=" + site +
                 ", firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
                 ", username='" + username + '\'' +

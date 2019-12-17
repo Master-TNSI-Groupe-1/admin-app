@@ -11,7 +11,6 @@ public class UsersMapper {
         usersDTO.setEnabled(users.isEnabled());
         usersDTO.setFirstname(users.getFirstname());
         usersDTO.setLastname(users.getLastname());
-        usersDTO.setSite(SiteMapper.entityToDTO(users.getSite()));
         usersDTO.setUsername(users.getUsername());
         usersDTO.setIdUser(users.getIdUser());
         return usersDTO;
@@ -24,7 +23,6 @@ public class UsersMapper {
         users.setIdUser(usersDTO.getIdUser());
         users.setLastname(usersDTO.getLastname());
         users.setPassword(usersDTO.getPassword());
-        users.setSite(SiteMapper.dtoToEntity(usersDTO.getSite()));
         users.setUsername(usersDTO.getUsername());
         return users;
     }

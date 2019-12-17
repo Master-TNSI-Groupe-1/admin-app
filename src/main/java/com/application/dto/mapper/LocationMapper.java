@@ -21,7 +21,6 @@ public class LocationMapper {
         for(Sensors sensors : location.getSensorsList()) {
             locationDTO.getSensorsList().add(SensorsMapper.entityToDTO(sensors));
         }
-        locationDTO.setSite(SiteMapper.entityToDTO(location.getSite()));
         return locationDTO;
     }
 
@@ -37,7 +36,6 @@ public class LocationMapper {
         for(SensorsDTO sensorsDTO : locationDTO.getSensorsList()) {
             location.getSensorsList().add(SensorsMapper.dtoToEntity(sensorsDTO));
         }
-        location.setSite(SiteMapper.dtoToEntity(locationDTO.getSite()));
         return location;
     }
 }

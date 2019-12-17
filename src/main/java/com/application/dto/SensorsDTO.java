@@ -9,25 +9,13 @@ public class SensorsDTO implements Serializable {
 
     private Integer idSensor;
 
-    private LocationDTO location;
-
     private String ipConfig;
 
     private boolean isEnabled;
 
     private boolean isInput;
 
-    public SensorsDTO() {
-        location = new LocationDTO();
-    }
-
-    public LocationDTO getLocation() {
-        return location;
-    }
-
-    public void setLocation(LocationDTO location) {
-        this.location = location;
-    }
+    public SensorsDTO() { }
 
     public String getIpConfig() {
         return ipConfig;
@@ -65,7 +53,6 @@ public class SensorsDTO implements Serializable {
     public String toString() {
         return "SensorsDTO{" +
                 "idSensor=" + idSensor +
-                ", location=" + location +
                 ", ipConfig='" + ipConfig + '\'' +
                 ", isEnabled=" + isEnabled +
                 ", isInput=" + isInput +

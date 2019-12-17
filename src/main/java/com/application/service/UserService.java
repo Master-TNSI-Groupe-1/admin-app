@@ -1,8 +1,8 @@
 package com.application.service;
 
-import com.application.entity.Users;
+import com.application.dto.UsersDTO;
 
 public interface UserService {
 
-    Users getLoggedUser();
+    UsersDTO getLoggedUser();
 };

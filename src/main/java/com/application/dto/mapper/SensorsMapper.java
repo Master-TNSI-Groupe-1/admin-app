@@ -11,7 +11,6 @@ public class SensorsMapper {
         sensorsDTO.setIdSensor(sensors.getIdSensor());
         sensorsDTO.setInput(sensors.isInput());
         sensorsDTO.setIpConfig(sensors.getIpConfig());
-        sensorsDTO.setLocation(LocationMapper.entityToDTO(sensors.getLocation()));
         return sensorsDTO;
     }
 
@@ -21,7 +20,6 @@ public class SensorsMapper {
         sensors.setIdSensor(sensorsDTO.getIdSensor());
         sensors.setInput(sensorsDTO.isInput());
         sensors.setIpConfig(sensorsDTO.getIpConfig());
-        sensors.setLocation(LocationMapper.dtoToEntity(sensorsDTO.getLocation()));
         return sensors;
     }
 }

@@ -2,6 +2,7 @@ package com.application.controller;
 
 import com.application.configuration.PageHTML;
 import com.application.configuration.PageURL;
+import com.application.dto.UsersDTO;
 import com.application.entity.PointXY;
 import com.application.entity.Users;
 import com.application.service.UserService;
@@ -19,17 +20,15 @@ public class PlacesController {
 
     @RequestMapping(PageURL.createPlace)
     public String createPlace(Model model) {
-        Users usersDTO = userService.getLoggedUser();
+        UsersDTO usersDTO = userService.getLoggedUser();
         model.addAttribute("user", usersDTO);
-
         model.addAttribute("newPoint", new PointXY());
-
         return PageHTML.placeCreate;
     }
 
     @RequestMapping(PageURL.updatePlace)
     public String updatePlace(Model model) {
-        Users usersDTO = userService.getLoggedUser();
+        UsersDTO usersDTO = userService.getLoggedUser();
         model.addAttribute("user", usersDTO);
         return PageHTML.placeUpdate;
     }

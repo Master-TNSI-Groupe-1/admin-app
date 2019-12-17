@@ -11,7 +11,7 @@ public class Sensors {
     private Integer idSensor;
 
     @Basic
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="id_location")
     private Location location;
 

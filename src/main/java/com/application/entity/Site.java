@@ -1,5 +1,8 @@
 package com.application.entity;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -27,10 +30,12 @@ public class Site {
     @Column(name = "is_enabled")
     private boolean isEnabled;
 
-    @OneToMany(mappedBy = "site", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "site", cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Location> locationList;
 
-    @OneToMany(mappedBy = "site", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "site")
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Users> usersList;
 
     public Site() {}

@@ -1,10 +1,10 @@
 package com.application.service;
 
-import com.application.entity.Site;
+import com.application.dto.SiteDTO;
 
 import java.util.List;
 
 public interface SiteService {
 
-    List<Site> findAllSite();
+    List<SiteDTO> findAllSite();
 }

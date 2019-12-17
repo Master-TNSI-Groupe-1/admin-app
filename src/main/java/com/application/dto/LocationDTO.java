@@ -13,7 +13,6 @@ public class LocationDTO implements Serializable {
     private String name;
     private String urlImage;
     private boolean isEnabled;
-    private SiteDTO site;
     private List<PointXYDTO> pointXYList;
     private List<SensorsDTO> sensorsList;
 
@@ -44,14 +43,6 @@ public class LocationDTO implements Serializable {
 
     public void setEnabled(boolean enabled) {
         isEnabled = enabled;
-    }
-
-    public SiteDTO getSite() {
-        return site;
-    }
-
-    public void setSite(SiteDTO site) {
-        this.site = site;
     }
 
     public List<PointXYDTO> getPointXYList() {
@@ -85,7 +76,6 @@ public class LocationDTO implements Serializable {
                 ", name='" + name + '\'' +
                 ", urlImage='" + urlImage + '\'' +
                 ", isEnabled=" + isEnabled +
-                ", site=" + site +
                 ", pointXYList=" + pointXYList +
                 ", sensorsList=" + sensorsList +
                 '}';
