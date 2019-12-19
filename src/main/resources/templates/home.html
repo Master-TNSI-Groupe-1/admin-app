@@ -47,8 +47,8 @@
 
                 <div class="card-body">
                     <div class="form-group space">
-                        <label class="form-label" for="ndc">Nom du lieu (exemple : Restaurant Universitaire)</label>
-                        <input id="ndc" class="form-input" type="text">
+                        <label class="form-label" for="ndl">Nom du lieu (exemple : Restaurant Universitaire)</label>
+                        <input id="ndl" class="form-input" type="text">
                     </div>
 
                     <div class="form-group space">
@@ -64,7 +64,7 @@
                 </div>
                 <div class="card-body">
                     <div class="position-container">
-                        <div class="position">
+                        <div class="position pointXY-0">
                             <div class="form-group">
                                 <label class="form-label" for="longitude">Longitude (exemple : 394.29923094)</label>
                                 <input id="longitude" class="form-input" type="number">
@@ -76,7 +76,7 @@
                             </div>
 
                             <div>
-                                <button id="appendPositionButton" class="btn btn-outline-success">
+                                <button class="btn btn-outline-success button-append-pointXY">
                                     <i class="fa fa-plus" aria-hidden="true"></i> Ajouter
                                 </button>
                             </div>
@@ -93,7 +93,7 @@
                 <div class="card-body">
 
                     <div class="capteurs-container ">
-                        <div class="capteur row">
+                        <div class="capteur row capteur-0">
                             <div class="form-group col-sm-4">
                                 <label class="form-label form-label-special" for="capteur-id">ID de votre capteur</label>
                                 <input id="capteur-id" class="form-input" type="text">
@@ -107,7 +107,7 @@
                                 </label>
                             </div>
 
-                            <button id="appendCapteurButton" class="btn btn-outline-success col-sm-3 button-append-capteur">
+                            <button class="btn btn-outline-success col-sm-3 button-append-capteur">
                                 <i class="fa fa-plus" aria-hidden="true"></i> Ajouter
                             </button>
                         </div>
@@ -117,7 +117,7 @@
             </div>
 
             <div class="submit">
-                <button type="button" class="btn btn-default"> <i class="fa fa-check" aria-hidden="true"></i> Creer votre lieu !</button>
+                <button type="button" class="btn btn-default addPlace"> <i class="fa fa-check" aria-hidden="true"></i> Creer votre lieu !</button>
             </div>
         </div>
     </div>
@@ -132,11 +132,7 @@
             <div class="card-body">
                 <div class="form-group">
                     <label for="selectLocation">Liste de vos lieux :</label>
-                    <select th:name="site" id="selectLocation" class="form-control" th:required="true">
-                        <option value="">Lieu à modifier</option>
-                        <option th:each="location : ${user.site.locationList}" th:value="${location}"
-                                th:text="${location.name}"></option>
-                    </select>
+                    <select id="selectLocation" class="selectLocation form-control" th:required="true"></select>
                 </div>
             </div>
         </div>
@@ -172,7 +168,7 @@
                                 <input id="latitude_update" class="form-input" type="number">
                             </div>
 
-                            <button id="appendPositionUpdateButton" class="btn btn-outline-success">
+                            <button class="btn btn-outline-success addPositionButton">
                                 <i class="fa fa-plus" aria-hidden="true"></i> Ajouter
                             </button>
                         </div>
@@ -189,42 +185,13 @@
                             </tr>
                             </thead>
                             <tbody id="update_position_collection">
-                            <tr>
-                                <td>394.29923094</td>
-                                <td>13.24312315433</td>
-                                <td>
-                                    <button class="btn btn-danger removeLocationBtn">
-                                        <i class="fa fa-trash remove-position" aria-hidden="true"></i> Supprimer
-                                    </button>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>394.29923094</td>
-                                <td>13.24312315433</td>
-                                <td>
-                                    <button class="btn btn-danger removeLocationBtn">
-                                        <i class="fa fa-trash remove-position" aria-hidden="true"></i> Supprimer
-                                    </button>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>394.29923094</td>
-                                <td>13.24312315433</td>
-                                <td>
-                                    <button class="btn btn-danger removeLocationBtn">
-                                        <i class="fa fa-trash remove-position" aria-hidden="true"></i> Supprimer
-                                    </button>
-                                </td>
-                            </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
 
                 <div class="submit">
-                    <button type="button" class="btn btn-default"> <i class="fa fa-save"></i> Sauvegarder les modifications de votre lieu !</button>
+                    <button type="button" class="btn btn-default updateLocation"> <i class="fa fa-save"></i> Sauvegarder les modifications de votre lieu !</button>
                 </div>
             </div>
         </div>

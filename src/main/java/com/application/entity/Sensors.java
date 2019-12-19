@@ -1,18 +1,23 @@
 package com.application.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class Sensors {
+public class Sensors implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_sensor")
-    private Integer idSensor;
+    private Integer id;
 
     @Basic
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="id_location")
+    @JsonIgnore
     private Location location;
 
     @Basic
@@ -29,12 +34,12 @@ public class Sensors {
 
     public Sensors() {}
 
-    public int getIdSensor() {
-        return idSensor;
+    public int getId() {
+        return id;
     }
 
-    public void setIdSensor(int idSensor) {
-        this.idSensor = idSensor;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Location getLocation() {
@@ -67,5 +72,15 @@ public class Sensors {
 
     public void setInput(boolean input) {
         isInput = input;
+    }
+
+    @Override
+    public String toString() {
+        try {
+            return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
+        } catch (com.fasterxml.jackson.core.JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

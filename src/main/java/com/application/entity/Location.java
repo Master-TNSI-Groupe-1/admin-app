@@ -1,18 +1,19 @@
 package com.application.entity;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
-public class Location {
+public class Location implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_location")
-    private Integer idLocation;
+    private Integer id;
 
     @Basic
     private String name;
@@ -26,8 +27,9 @@ public class Location {
     private boolean isEnabled;
 
     @Basic
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="id_site")
+    @JsonIgnore
     private Site site;
 
     @Basic
@@ -38,22 +40,20 @@ public class Location {
     @Column(name = "number_user")
     private int numberUser;
 
-    @OneToMany(mappedBy = "location", cascade = CascadeType.ALL)
-    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(mappedBy = "location", cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     private List<PointXY> pointXYList;
 
-    @OneToMany(mappedBy = "location", cascade = CascadeType.ALL)
-    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(mappedBy = "location", cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     private List<Sensors> sensorsList;
 
     public Location() { }
 
-    public int getIdLocation() {
-        return idLocation;
+    public Integer getId() {
+        return id;
     }
 
-    public void setIdLocation(int idLocation) {
-        this.idLocation = idLocation;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -88,6 +88,22 @@ public class Location {
         this.site = site;
     }
 
+    public int getNumberPlaces() {
+        return numberPlaces;
+    }
+
+    public void setNumberPlaces(int numberPlaces) {
+        this.numberPlaces = numberPlaces;
+    }
+
+    public int getNumberUser() {
+        return numberUser;
+    }
+
+    public void setNumberUser(int numberUser) {
+        this.numberUser = numberUser;
+    }
+
     public List<PointXY> getPointXYList() {
         return pointXYList;
     }
@@ -104,23 +120,13 @@ public class Location {
         this.sensorsList = sensorsList;
     }
 
-    public void setIdLocation(Integer idLocation) {
-        this.idLocation = idLocation;
-    }
-
-    public int getNumberPlaces() {
-        return numberPlaces;
-    }
-
-    public void setNumberPlaces(int numberPlaces) {
-        this.numberPlaces = numberPlaces;
-    }
-
-    public int getNumberUser() {
-        return numberUser;
-    }
-
-    public void setNumberUser(int numberUser) {
-        this.numberUser = numberUser;
+    @Override
+    public String toString() {
+        try {
+            return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
+        } catch (com.fasterxml.jackson.core.JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

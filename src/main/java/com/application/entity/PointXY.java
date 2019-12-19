@@ -1,48 +1,53 @@
 package com.application.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class PointXY {
+public class PointXY implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_point")
-    private Integer idPoint;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id_pointxy")
+    private Integer id;
 
     @Basic
-    private int latitude;
+    private Double latitude;
 
     @Basic
-    private int longitude;
+    private Double longitude;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="id_location")
+    @JsonIgnore
     private Location location;
 
     public PointXY() {}
 
-    public int getIdPoint() {
-        return idPoint;
+    public Integer getId() {
+        return id;
     }
 
-    public void setIdPoint(int idPoint) {
-        this.idPoint = idPoint;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public int getLatitude() {
+    public Double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(int latitude) {
+    public void setLatitude(Double latitude) {
         this.latitude = latitude;
     }
 
-    public int getLongitude() {
+    public Double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(int longitude) {
+    public void setLongitude(Double longitude) {
         this.longitude = longitude;
     }
 
@@ -52,5 +57,15 @@ public class PointXY {
 
     public void setLocation(Location location) {
         this.location = location;
+    }
+
+    @Override
+    public String toString() {
+        try {
+            return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
+        } catch (com.fasterxml.jackson.core.JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

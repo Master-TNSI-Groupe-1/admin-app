@@ -1,21 +1,26 @@
 package com.application.entity;
 
 import com.application.entity.type.RoleType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Collections;
 
 @Entity
-public class Users implements UserDetails {
+@JsonIgnoreProperties
+public class Users implements UserDetails, Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_user")
-    private Integer idUser;
+    private Integer id;
 
     @Basic
     @OneToOne(fetch = FetchType.EAGER)
@@ -35,6 +40,7 @@ public class Users implements UserDetails {
     private String username;
 
     @Basic
+    @JsonIgnore
     private String password;
 
     @Basic
@@ -46,7 +52,7 @@ public class Users implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singletonList(new SimpleGrantedAuthority(RoleType.ADMIN.name()));
+        return Collections.singletonList(new SimpleGrantedAuthority("ROLE_"+RoleType.ADMIN.name()));
     }
 
     @Override
@@ -79,12 +85,12 @@ public class Users implements UserDetails {
         return true;
     }
 
-    public Integer getIdUser() {
-        return idUser;
+    public Integer getId() {
+        return id;
     }
 
-    public void setIdUser(Integer idUser) {
-        this.idUser = idUser;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Site getSite() {
@@ -121,5 +127,15 @@ public class Users implements UserDetails {
 
     public void setEnabled(boolean enabled) {
         isEnabled = enabled;
+    }
+
+    @Override
+    public String toString() {
+        try {
+            return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
+        } catch (com.fasterxml.jackson.core.JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

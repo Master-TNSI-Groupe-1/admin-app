@@ -1,18 +1,19 @@
 package com.application.entity;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
-public class Site {
+public class Site implements Serializable {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name="id_site")
-    private Integer idSite;
+    private Integer id;
 
     @Basic
     @Column(length = 50)
@@ -30,21 +31,21 @@ public class Site {
     @Column(name = "is_enabled")
     private boolean isEnabled;
 
-    @OneToMany(mappedBy = "site", cascade = CascadeType.ALL)
-    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(mappedBy = "site", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Location> locationList;
 
     @OneToOne(mappedBy = "site")
+    @JsonIgnore
     private Users userOwner;
 
     public Site() {}
 
-    public int getIdSite() {
-        return idSite;
+    public int getId() {
+        return id;
     }
 
-    public void setIdSite(int idSite) {
-        this.idSite = idSite;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -88,7 +89,7 @@ public class Site {
     }
 
     public void setIdSite(Integer idSite) {
-        this.idSite = idSite;
+        this.id = idSite;
     }
 
     public Users getUserOwner() {
@@ -97,5 +98,15 @@ public class Site {
 
     public void setUserOwner(Users userOwner) {
         this.userOwner = userOwner;
+    }
+
+    @Override
+    public String toString() {
+        try {
+            return new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(this);
+        } catch (com.fasterxml.jackson.core.JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

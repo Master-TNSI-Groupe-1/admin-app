@@ -7,9 +7,20 @@ public interface PageURL {
     String logout = "/logout";
     String home = "/home";
 
-    String place = "/places";
-    String createPlace = "/create";
-    String updatePlace = "/update";
+    String location = "/location";
+    String locationFind = "/find";
+    String locationUpdate = "/update";
+    String locationCreate = "/create";
+
+    String pointXY = "/pointxy";
+    String createPointXY = "/create";
+    String removePointXY = "/delete";
+
+//    Spring securirty
+
+    String homeAuthorization = "/home/**";
+    String pointXYAuthorization = "/pointxy/**";
+    String locationAuthorization = "/location/**";
 
     String css = "/css/**";
     String js = "/js/**";

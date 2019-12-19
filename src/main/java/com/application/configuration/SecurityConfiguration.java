@@ -1,11 +1,10 @@
 package com.application.configuration;
 
-import com.application.provider.AppAuthProvider;
-import com.application.service.impl.UserDetailsImpl;
+import com.application.entity.type.RoleType;
+import com.application.service.impl.IUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -22,7 +21,7 @@ public class SecurityConfiguration  extends WebSecurityConfigurerAdapter{
 	private static final int MAXIMUM_SESSIONS = 1;
 
 	@Autowired
-    UserDetailsImpl userDetailsService;
+    IUserDetails userDetailsService;
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -37,10 +36,13 @@ public class SecurityConfiguration  extends WebSecurityConfigurerAdapter{
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf();
+		http.csrf().disable();
 
 		// The pages does not require login
 		http.authorizeRequests().antMatchers(PageURL.all, PageURL.login, PageURL.loginError, PageURL.css, PageURL.js, PageURL.webjars).permitAll();
+
+        // authorization users for those pages
+		http.authorizeRequests().antMatchers(PageURL.homeAuthorization, PageURL.pointXYAuthorization, PageURL.locationAuthorization).hasRole(RoleType.ADMIN.name());
 
 		// If no login, it will redirect to /login page.
 		http.authorizeRequests().anyRequest().authenticated();
