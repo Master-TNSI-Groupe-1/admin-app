@@ -1,0 +1,244 @@
+/* START CHECKBOX */
+.form-label-special{
+    margin-left: 1em !important;
+}
+
+.switch{
+    margin-top: 1em !important;
+}
+
+.switch label input[type="checkbox"] {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.switch label {
+    cursor: pointer;
+}
+
+.switch label .lever {
+    position: relative;
+    display: inline-block;
+    margin: 0 1rem;
+    margin-right: .625rem;
+    vertical-align: middle;
+    content: "";
+    background-color: #818181;
+    border-radius: .9375rem;
+    width: 2.5rem;
+    height: .9375rem;
+    -webkit-transition: background 0.3s ease;
+    transition: background 0.3s ease;
+    margin-left: 0.5em;
+}
+
+.switch label .lever:after {
+    position: absolute;
+    top: -.1875rem;
+    left: -.3125rem;
+    display: inline-block;
+    content: "";
+    background-color: #f1f1f1;
+    border-radius: 1.3125rem;
+    -webkit-box-shadow: 0 0.0625rem 0.1875rem 0.0625rem rgba(0,0,0,0.4);
+    box-shadow: 0 0.0625rem 0.1875rem 0.0625rem rgba(0,0,0,0.4);
+    width: 1.3125rem;
+    height: 1.3125rem;
+    -webkit-transition: left 0.3s ease,background 0.3s ease,-webkit-box-shadow 1s ease;
+    transition: left 0.3s ease,background 0.3s ease,-webkit-box-shadow 1s ease;
+    transition: left 0.3s ease,background 0.3s ease,box-shadow 1s ease;
+    transition: left 0.3s ease,background 0.3s ease,box-shadow 1s ease,-webkit-box-shadow 1s ease;
+}
+
+.switch label input[type="checkbox"]:checked+.lever:after {
+    left: 1.5rem;
+    background-color: #0984e3;
+}
+
+.switch label input[type="checkbox"]:checked+.lever {
+    background-color: #74b9ff;
+}
+
+/* END CHECKBOX  */
+
+.special-form{
+    margin-left: 2em;
+}
+
+.title{
+    margin-top: 5%;
+}
+
+.page-name{
+    color: #74b9ff;
+    width: 100%;
+    font-family: 'Satisfy', cursive;
+}
+
+.content-title{
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+}
+
+.content-title p{
+    margin-right: 3em;
+}
+
+
+.nav-tabs{
+    margin-top: 3em;
+    margin-bottom: 2em;
+}
+
+.submit{
+    display: flex;
+    justify-content: center;
+}
+
+.submit button{
+    margin-top: 2em;
+    width: 97%;
+    background-color: #74b9ff;
+    color: white;
+}
+
+.position-text{
+    color: #74b9ff;
+    margin-top: 1em;
+    margin-bottom: -1em;
+}
+
+.card-header{
+    color: #74b9ff;
+    font-weight: bold;
+}
+
+/* Start dynamic INPUT */
+
+.form-wrapper {
+    max-width: 30%;
+    min-width: 400px;
+    padding: 50px 30px 50px 30px;
+    margin: 50px auto;
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 15px 35px rgba(50,50,93,.1),0 5px 15px rgba(0,0,0,.07);
+}
+
+.form-group {
+    position:relative;
+
+    & + .form-group {
+          margin-top: 30px;
+      }
+}
+
+.form-label {
+    position: absolute;
+    left: 0;
+    top: 10px;
+    color: #999;
+    background-color: #fff;
+    z-index: 10;
+    transition: transform 150ms ease-out, font-size 150ms ease-out;
+}
+
+.focused .form-label {
+    transform: translateY(-125%);
+    font-size: .75em;
+}
+
+.form-input {
+    position: relative;
+    padding: 12px 0px 5px 0;
+    width: 100%;
+    outline: 0;
+    border: 0;
+    box-shadow: 0 1px 0 0 #e5e5e5;
+    transition: box-shadow 150ms ease-out;
+
+    &:focus {
+         box-shadow: 0 2px 0 0 blue;
+     }
+}
+
+#appendPositionButton{
+    width: 79%;
+    float: right;
+}
+/* END */
+
+.button-append-capteur{
+    margin-right: 0em;
+    margin-left: -1.2em;
+}
+
+.position{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-top: 2em;
+}
+
+.position .form-group{
+    margin-right: 1em;
+}
+
+.position button{
+    height: 2.4em;
+    padding-left: 0em;
+    margin-left: 1em;
+    margin-top: 0.5em;
+}
+
+.capteurs-container button{
+    height: 2.4em;
+    margin-top: 0.5em;
+}
+
+.space{
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.big{
+    margin-top: 2em;
+}
+
+.card-space{
+    margin-top: 2em;
+}
+
+.title-space{
+    margin-top: 3em;
+    text-align: end;
+}
+
+.disconnect{
+    width: 100%;
+    text-align: end;
+    color: rgb(191, 191, 191) !important;
+    cursor: pointer;
+}
+
+#update_location, .update-location-card{
+    display: none;
+}
+
+.add-position-button{
+    width: 100%;
+    margin-top: 2.5em;
+    margin-bottom: 1em;
+}
+
+.add-position-button button{
+    width: 100%;
+}
+
+.update-page{
+    margin-top: 2em;
+    margin-bottom: 1em;
+}
+
+a {
+    cursor: pointer;
+}
