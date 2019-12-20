@@ -23,19 +23,21 @@ public class LocationController {
     LocationService locationService;
 
     @RequestMapping(value = PageURL.locationFind, method = RequestMethod.GET)
-    public ResponseEntity<?> findLocationById(@RequestParam(value = "id") Integer locationId) {
-        AjaxResponseBodyDTO result = new AjaxResponseBodyDTO();
-        if(locationId == null) {
-            result.getResult().add(locationService.findAll());
-        } else {
+    public ResponseEntity<?> findLocation(@RequestParam(value = "locationId") final Integer locationId, @RequestParam(value = "siteId") final Integer siteId) {
+        final AjaxResponseBodyDTO result = new AjaxResponseBodyDTO();
+
+        if(locationId != null) {
             result.getResult().add(locationService.findById(locationId));
+        }
+        if(siteId != null) {
+            result.getResult().add(locationService.findAllBySite(siteId));
         }
         return ResponseEntity.ok(result);
     }
 
     @RequestMapping(value = PageURL.locationCreate, method = RequestMethod.POST)
-    public ResponseEntity<?> createLocation(@Valid @RequestBody Location location, Errors errors) {
-        AjaxResponseBodyDTO result = new AjaxResponseBodyDTO();
+    public ResponseEntity<?> createLocation(@Valid @RequestBody final Location location, final Errors errors) {
+        final AjaxResponseBodyDTO result = new AjaxResponseBodyDTO();
 
         if (errors.hasErrors()) {
 
@@ -54,8 +56,8 @@ public class LocationController {
     }
 
     @RequestMapping(value = PageURL.locationUpdate, method = RequestMethod.PUT)
-    public ResponseEntity<?> updateLocation(@Valid @RequestBody UpdateLocationDTO updateLocationDTO, Errors errors) {
-        AjaxResponseBodyDTO result = new AjaxResponseBodyDTO();
+    public ResponseEntity<?> updateLocation(@Valid @RequestBody final UpdateLocationDTO updateLocationDTO, final Errors errors) {
+        final AjaxResponseBodyDTO result = new AjaxResponseBodyDTO();
 
         if (errors.hasErrors()) {
 

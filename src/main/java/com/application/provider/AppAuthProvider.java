@@ -16,9 +16,9 @@ public class AppAuthProvider extends DaoAuthenticationProvider {
     IUserDetails userService;
 
     @Override
-    public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        UsernamePasswordAuthenticationToken auth = (UsernamePasswordAuthenticationToken) authentication;
-        String name = auth.getName();
+    public Authentication authenticate(final Authentication authentication) throws AuthenticationException {
+        final UsernamePasswordAuthenticationToken auth = (UsernamePasswordAuthenticationToken) authentication;
+        final String name = auth.getName();
 
         UserDetails user = userService.loadUserByUsername(name);
         if (user == null) {

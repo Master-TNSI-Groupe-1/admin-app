@@ -13,6 +13,8 @@ $(document).ready(function(){
     const API_POST_POINTXY = '/pointxy/create';
     const API_DELETE_POINTXY = '/pointxy/delete';
 
+    const SITE = $('.user').data('site');
+
     var locationSelected = undefined;
 
     $.fn.outerHTML = function(s) {
@@ -36,7 +38,8 @@ $(document).ready(function(){
                     type: "GET",
                     url: API_GET_LOCATION,
                     data: {
-                        id: null
+                        locationId: null,
+                        siteId: SITE
                     },
                     dataType: 'json',
                     success: function (data) {
@@ -153,14 +156,15 @@ $(document).ready(function(){
     });
 
     $('.selectLocation').change(function(){
-        idLocation = $(this).val();
-        if( idLocation !== '' ){
+        locationId = $(this).val();
+        if( locationId !== '' ){
 
             $.ajax({
                 type: "GET",
                 url: API_GET_LOCATION,
                 data: {
-                    id: idLocation
+                    locationId: locationId,
+                    siteId: null
                 },
                 success: function (data) {
                     locationSelected = data.result[0];
@@ -207,6 +211,18 @@ $(document).ready(function(){
         newPosition.find('.form-group').removeClass('focused');
         newPosition.removeClass( 'position-' + (countForPosition - 1) ).addClass(`point-${countForPosition}`);
 
+        let inputLongitude = newPosition.find(`[id*='longitude']`).removeClass('filled'),
+            forLongitude   = newPosition.find(`[for*='longitude']`);
+
+        let inputLatitude = newPosition.find(`[id*='latitude']`).removeClass('filled'),
+            forLatitude   = newPosition.find(`[for*='latitude']`);
+
+        inputLongitude.attr('id', inputLongitude.attr('id') + countForPosition);
+        inputLatitude.attr('id', inputLatitude.attr('id') + countForPosition);
+
+        forLongitude.attr('for', forLongitude.attr('for') + countForPosition);
+        forLatitude.attr('for', forLatitude.attr('for') + countForPosition);
+
         positionContainer.append( newPosition );
         newPosition.fadeIn(1000);
     });
@@ -222,6 +238,12 @@ $(document).ready(function(){
         let newCapteur = $(currentCapteurHTML).removeClass( 'capteur-' + (countForCapteur - 1) ).addClass(`capteur-${countForCapteur}`);
         newCapteur.css('display', 'none');
         newCapteur.find('.form-group').removeClass('focused');
+
+        let capteurID    = newCapteur.find(`[id*='capteur-id'`).removeClass('filled'),
+            forCapteurID = newCapteur.find(`[for*='capteur-id']`);
+
+        capteurID.attr('id', capteurID.attr('id') + countForCapteur);
+        forCapteurID.attr('for', forCapteurID.attr('for') + countForCapteur);
 
         capteurContainer.append( newCapteur );
         newCapteur.fadeIn(1000);

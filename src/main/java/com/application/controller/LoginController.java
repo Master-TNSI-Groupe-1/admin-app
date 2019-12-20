@@ -20,7 +20,7 @@ public class LoginController {
 
     @RequestMapping(value = PageURL.login, method = RequestMethod.GET)
     public String login() {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        final Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
         if (!(auth instanceof AnonymousAuthenticationToken)) {
             return "redirect:"+ PageURL.home;
@@ -29,7 +29,7 @@ public class LoginController {
     }
 
     @RequestMapping(value =  PageURL.loginError, method = RequestMethod.GET)
-    public String login(HttpServletRequest request, Model model) {
+    public String login(final Model model) {
         model.addAttribute("errorMessage", ErrorMessage.badCredential);
         return PageHTML.login;
     }

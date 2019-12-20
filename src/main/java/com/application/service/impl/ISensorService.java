@@ -13,7 +13,7 @@ public class ISensorService implements SensorService {
     SensorsRepository sensorsRepository;
 
     @Override
-    public void update(Sensors sensors) {
+    public void update(final Sensors sensors) {
         sensorsRepository.save(sensors);
     }
 }

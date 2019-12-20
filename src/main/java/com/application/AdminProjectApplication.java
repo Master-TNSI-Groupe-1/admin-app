@@ -7,7 +7,7 @@ import org.springframework.context.ApplicationContext;
 public class AdminProjectApplication {
 
 	public static void main(String[] args) {
-	 	 ApplicationContext context =   SpringApplication.run(AdminProjectApplication.class, args);
+		final ApplicationContext context =   SpringApplication.run(AdminProjectApplication.class, args);
 	}
 	
 }
