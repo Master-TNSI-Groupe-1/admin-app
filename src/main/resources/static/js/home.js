@@ -268,7 +268,7 @@ $(document).ready(function(){
             let longitude = $(this).find('input').val();
             let latitude = $(this).find('input').last().val();
 
-            if(isNaN(latitude) === false && isNaN(longitude) === false) {
+            if(latitude && longitude) {
                 let pointXY = {};
                 pointXY['id'] = null;
                 pointXY['longitude'] = longitude;
@@ -280,13 +280,15 @@ $(document).ready(function(){
         let sensorArray = [];
         $('div[class*=capteur-]').each(function(){
             let idSensor = $(this).find('input').val();
-            let switchSensor = $(this).find('input').last().attr('checked');
-            let sensor = {};
-            sensor['id'] =  idSensor;
-            sensor['ipConfig'] =  null;
-            sensor['isEnabled'] =  null;
-            sensor['isInput'] = switchSensor === undefined;
-            sensorArray.push(sensor);
+            if(idSensor) {
+                let switchSensor = $(this).find('input').last().attr('checked');
+                let sensor = {};
+                sensor['id'] =  idSensor;
+                sensor['ipConfig'] =  null;
+                sensor['isEnabled'] =  true;
+                sensor['isInput'] = (switchSensor === undefined);
+                sensorArray.push(sensor);
+            }
         });
 
         let location = {};

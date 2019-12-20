@@ -1,6 +1,7 @@
 package com.application.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.persistence.*;
@@ -29,6 +30,7 @@ public class Site implements Serializable {
 
     @Basic
     @Column(name = "is_enabled")
+    @JsonProperty
     private boolean isEnabled;
 
     @OneToMany(mappedBy = "site", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
