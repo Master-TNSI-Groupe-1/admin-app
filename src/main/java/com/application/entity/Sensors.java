@@ -35,6 +35,10 @@ public class Sensors implements Serializable {
     @JsonProperty
     private boolean isInput;
 
+    @Basic
+    @Column(name = "sensor_name")
+    private Integer sensorName;
+
     public Sensors() {}
 
     public Integer getId() {
@@ -75,6 +79,14 @@ public class Sensors implements Serializable {
 
     public void setInput(boolean input) {
         isInput = input;
+    }
+
+    public Integer getSensorName() {
+        return sensorName;
+    }
+
+    public void setSensorName(Integer sensorName) {
+        this.sensorName = sensorName;
     }
 
     @Override

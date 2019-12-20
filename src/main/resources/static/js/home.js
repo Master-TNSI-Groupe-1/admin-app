@@ -43,12 +43,13 @@ $(document).ready(function(){
                     },
                     dataType: 'json',
                     success: function (data) {
-                        locationSelected = data.result[0];
+                        locations = data.result[0];
                         var html = `<option value="">${UPDATE_LIEU}</option>`;
-                        var lenght = data.result[0].length;
-                        for ( var i = 0; i < lenght; i++) {
-                            html += '<option value="' + locationSelected[i].id + '">'
-                                + locationSelected[i].name + '</option>';
+                        for ( var i = 0; i < locations.length; i++) {
+                            if(locations[i].isEnabled) {
+                                html += '<option value="' + locations[i].id + '">'
+                                    + locations[i].name + '</option>';
+                            }
                         }
                         html += '</option>';
                         $('#selectLocation').html(html);
@@ -270,7 +271,6 @@ $(document).ready(function(){
 
             if(latitude && longitude) {
                 let pointXY = {};
-                pointXY['id'] = null;
                 pointXY['longitude'] = longitude;
                 pointXY['latitude'] = latitude;
                 pointXYArray.push(pointXY);
@@ -283,7 +283,7 @@ $(document).ready(function(){
             if(idSensor) {
                 let switchSensor = $(this).find('input').last().attr('checked');
                 let sensor = {};
-                sensor['id'] =  idSensor;
+                sensor['sensorName'] =  idSensor;
                 sensor['ipConfig'] =  null;
                 sensor['isEnabled'] =  true;
                 sensor['isInput'] = (switchSensor === undefined);
@@ -292,7 +292,6 @@ $(document).ready(function(){
         });
 
         let location = {};
-        location['id'] = null;
         location['name'] = locationName;
         location['urlImage'] = null;
         location['isEnabled'] = true;
