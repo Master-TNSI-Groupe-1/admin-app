@@ -1,6 +1,7 @@
 package com.application.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.persistence.*;
@@ -26,19 +27,21 @@ public class Sensors implements Serializable {
 
     @Basic
     @Column(name = "is_enabled")
+    @JsonProperty
     private boolean isEnabled;
 
     @Basic
     @Column(name = "is_input")
+    @JsonProperty
     private boolean isInput;
 
     public Sensors() {}
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
