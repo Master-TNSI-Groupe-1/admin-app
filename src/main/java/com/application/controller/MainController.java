@@ -20,7 +20,7 @@ public class MainController {
 	}
 	
 	@RequestMapping(PageURL.home)
-	public String getHome(Model model) {
+	public String getHome(final Model model) {
 		model.addAttribute("user", userService.getLoggedUser());
 		return PageHTML.home;
 	}

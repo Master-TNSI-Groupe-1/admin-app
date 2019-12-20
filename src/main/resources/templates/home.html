@@ -25,7 +25,7 @@
     <hr>
 
     <div class="title-space" >
-        <p>Bonjour, <strong> <span th:text='${user.firstname}'></span> !</strong> (Site Administré : <span th:text='${user.site.name}'></span>) </p>
+        <p>Bonjour, <strong> <span class="user" th:data-site='${user.site.id}' th:text='${user.firstname}'></span> !</strong> (Site Administré : <span th:text='${user.site.name}'></span>) </p>
     </div>
 
     <ul class="nav nav-tabs">
@@ -76,7 +76,7 @@
                             </div>
 
                             <div>
-                                <button class="btn btn-outline-success button-append-pointXY">
+                                <button id="appendPositionButton" class="btn btn-outline-success button-append-pointXY">
                                     <i class="fa fa-plus" aria-hidden="true"></i> Ajouter
                                 </button>
                             </div>
@@ -96,7 +96,7 @@
                         <div class="capteur row capteur-0">
                             <div class="form-group col-sm-4">
                                 <label class="form-label form-label-special" for="capteur-id">ID de votre capteur</label>
-                                <input id="capteur-id" class="form-input" type="text">
+                                <input id="capteur-id" class="form-input" type="number" min="0">
                             </div>
 
                             <div class="switch col-sm-5">
@@ -152,7 +152,7 @@
 
                     <div class="form-group space">
                         <label class="form-label" for="locationPersonMax">Modifier le nombre de personnes maximum</label>
-                        <input id="locationPersonMax" class="form-input" type="number">
+                        <input id="locationPersonMax" class="form-input" type="number" min="0">
                     </div>
 
 

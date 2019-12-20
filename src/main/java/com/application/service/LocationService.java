@@ -8,11 +8,11 @@ import java.util.Collection;
 
 public interface LocationService {
 
-    Collection<Location> findAll();
+    Collection<Location> findAllBySite(final int idSite);
 
-    Location findById(Integer id);
+    Location findById(final Integer id);
 
-    Location update(UpdateLocationDTO updateLocationDTO);
+    Location update(final UpdateLocationDTO updateLocationDTO);
 
-    Location create(Location location);
+    Location create(final Location location);
 };

@@ -9,7 +9,7 @@ import java.util.Collection;
 @Repository
 public interface LocationRepository extends CrudRepository<Location, Integer> {
 
-    Location findById(int id);
+    Location findById(final int id);
 
-    Collection<Location> findAll();
+    Collection<Location> findAllBySite_Id(final int id);
 }

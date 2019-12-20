@@ -23,8 +23,8 @@ public class PointXYController {
     PointXYService pointXYService;
 
     @RequestMapping(value = PageURL.createPointXY, method = RequestMethod.POST)
-    public ResponseEntity<?> addPointXY(@Valid @RequestBody NewPointXYDTO newPointXYDTO, Errors errors) {
-        AjaxResponseBodyDTO result = new AjaxResponseBodyDTO();
+    public ResponseEntity<?> addPointXY(@Valid @RequestBody final NewPointXYDTO newPointXYDTO, final Errors errors) {
+        final AjaxResponseBodyDTO result = new AjaxResponseBodyDTO();
 
         if (errors.hasErrors()) {
             result.setMsg(errors.getAllErrors()
@@ -37,8 +37,8 @@ public class PointXYController {
     }
 
     @RequestMapping(value = PageURL.removePointXY, method = RequestMethod.DELETE)
-    public ResponseEntity<?> removePointXY(@Valid @RequestBody Integer idPoint, Errors errors) {
-        AjaxResponseBodyDTO result = new AjaxResponseBodyDTO();
+    public ResponseEntity<?> removePointXY(@Valid @RequestBody final Integer idPoint, final Errors errors) {
+        final AjaxResponseBodyDTO result = new AjaxResponseBodyDTO();
 
         if (errors.hasErrors()) {
             result.setMsg(errors.getAllErrors()

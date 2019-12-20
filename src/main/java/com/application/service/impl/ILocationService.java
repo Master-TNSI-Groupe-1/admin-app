@@ -31,27 +31,27 @@ public class ILocationService implements LocationService {
     SensorService sensorService;
 
     @Override
-    public Collection<Location> findAll() {
-        return locationRepository.findAll();
+    public Collection<Location> findAllBySite(final int idSite) {
+        return locationRepository.findAllBySite_Id(idSite);
     }
 
     @Override
-    public Location findById(Integer id) {
+    public Location findById(final Integer id) {
         return locationRepository.findById(id).orElseThrow(() -> new NullPointerException(ErrorMessage.locationNotFound));
     }
 
     @Override
-    public Location update(UpdateLocationDTO updateLocationDTO) {
-        Location location = locationRepository.findById(updateLocationDTO.getId()).orElseThrow(() -> new NullPointerException(ErrorMessage.locationNotFound));
+    public Location update(final UpdateLocationDTO updateLocationDTO) {
+        final Location location = locationRepository.findById(updateLocationDTO.getId()).orElseThrow(() -> new NullPointerException(ErrorMessage.locationNotFound));
         location.setName(updateLocationDTO.getName());
         location.setNumberPlaces(updateLocationDTO.getNumberPlaces());
         return locationRepository.save(location);
     }
 
     @Override
-    public Location create(Location location) {
+    public Location create(final Location location) {
         location.setSite(userService.getLoggedUser().getSite());
-        Location newLocation = locationRepository.save(location);
+        final Location newLocation = locationRepository.save(location);
 
         for(PointXY pointXY : newLocation.getPointXYList()) {
             pointXY.setLocation(newLocation);
@@ -65,4 +65,4 @@ public class ILocationService implements LocationService {
 
         return findById(location.getId());
     }
-};
+}

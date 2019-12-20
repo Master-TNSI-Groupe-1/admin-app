@@ -5,9 +5,9 @@ import com.application.entity.PointXY;
 
 public interface PointXYService {
 
-    PointXY addPointsXY(NewPointXYDTO newPointXYDTO);
+    PointXY addPointsXY(final NewPointXYDTO newPointXYDTO);
 
-    void deleteById(Integer idPoint);
+    void deleteById(final Integer idPoint);
 
-    void update(PointXY pointXY);
+    void update(final PointXY pointXY);
 }
